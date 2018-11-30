@@ -126,7 +126,17 @@ UploadClass 类构造函数参数
 3、可选参数【上传后文件名，默认 null - 根据设置的规则命名】
 ```
 > 2,设置上传信息
+```
+$upload->allowType = 'image/png,image/jpeg,image/pjpeg,image/x-png,image/gif'; //设置上传允许的类型
+$upload->allowExeName  = 'jpg,gif,png'; //允许上传文件的扩展名
+$upload->allowSize = 1024允许上传文件的大小 [单位 K]
+$upload->dirCreateRule = 'no'; //子文件夹创建规则  no - 不自动创建  |  y - 年 | m - 月 | d - 日
+$upload->renameRule = 3; //文件重命名规则  1: 不重命名 | 2: 随机重命名 | 3: _1 后缀形式重命名
+```
 > 3,上传文件
+```
+$uper->upload();
+```
 > 4,演示
 ```php
 <?php
