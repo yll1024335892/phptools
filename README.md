@@ -551,9 +551,86 @@ echo PinyinClass::getShortPinyin('您好!');
 
 
 
-### DirClass.php
-```shell
-注意不同用户建立一个新的文件夹，管理员能够查看图片并删除(谨慎操作)
+### DirClass.php文件夹操作
+####    使用说明
+```
+服务器端文件夹操作，包含创建、删除、重命名等常用功能。
+```
+####    使用说明
+
+>   扫描目录 scanDir($dir)
+```
+参数：目录【相对或绝对】
+返回：数组形式的目录及文件名
+```
+
+>   获取目录列表 listDir($dir)
+```
+参数：目录【相对或绝对】
+返回：数组形式的目录及文件名，格式如下：
+
+Array
+(
+//fileList 代表文件
+[fileList] => Array(
+    [0] => .htaccess
+    [1] => .project
+    [2] => demo.xml
+    [3] => favicon.ico
+    [4] => index.php
+    [5] => test.docx
+    [6] => test.pdf)
+//dirList 代表文件夹
+[dirList] => Array(
+    [0] => memadmin
+    [1] => myapp
+    [2] => phpGrace
+    [3] => sessions )
+)
+```
+>   创建文件夹 mkDir($dir)
+```
+参数：目录【相对或绝对】
+```
+>   删除文件夹 rmDir($dir, $keepdir = false)
+```
+参数：1、目录位置 2、是否保留目录【删除内部所有文件夹及文件】
+```
+>   重命名文件 reName($oldName, $newName)
+```
+参数：1、原始位置 2、重命名位置
+```
+>   复制文件夹 copyDir($src, $dst)
+```
+参数：1、原始位置 2、复制后的位置
+```
+
+>   演示代码【请逐一打开注释测试】
+```
+$dir = new DirClass();
+//获取文件夹
+//$res = $dir->listDir('D:\web\localhost');
+//print_r($res);
+//创建文件夹
+//$dir->mkDir('./a/b/c/d');
+//删除文件夹 [ 递归 ]
+//$dir->rmDir('./a');
+//重命名
+//$dir->reName('./test4/b', './b2');
+//复制文件夹
+//$dir->copyDir('./b2', './copy/b');
+```
+
+###### 注意不同用户建立一个新的文件夹，管理员能够查看图片并删除(谨慎操作)
+
+
+### NumToCapitalClass.php人民币大写转换类
+####    使用说明
+```
+直接使用 NumToCapitalClass 类的静态方法 : ParseNumber()
+
+echo NumToCapitalClass::ParseNumber(999158899.012);
+//输出 玖亿玖仟玖佰壹拾伍万捌仟捌佰玖拾玖元零壹分
 ```
 
 
