@@ -122,9 +122,7 @@ echo '<img src="demo22.gif" />';
 $upload = new UploadClass('fileName', 'upload', '2.png');
 UploadClass 类构造函数参数
 1、文件域名称(<input type="file" name="fileName" />)
-#
 2、上传文件保存文件夹位置
-#
 3、可选参数【上传后文件名，默认 null - 根据设置的规则命名】
 ```
 > 2,设置上传信息
