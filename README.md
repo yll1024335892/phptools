@@ -121,7 +121,7 @@ echo '<img src="demo22.gif" />';
 2,设置上传信息
 3,上传文件
 4,演示
-```
+```php
 <?php
 class indexController extends grace{
     public function index(){
