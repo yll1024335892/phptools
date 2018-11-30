@@ -353,8 +353,156 @@ echo $md5->getMd5('0b574905899880cf434ead59d960415efe26');
 ?>
 ```
 
+### ServerClass.php获取服务器工具类
+####    功能介绍
+```
+获取服务器相关信息
+```
+####    演示
+```php
+<?php
+use namespace Yll1024335892\Phptools\ServerClass;
+class indexController{
+    public function index(){
+        $serverInfo = ServerClass::info();
+	p($serverInfo);
+    }
+}
+```
+####    返回的数据结构
+```
+Array
+(
+    [0] => Windows NT ** 10.0 build 14393 (Windows 10) AMD64   //操作系统
+    [1] => 5.6.25   //php 版本
+    [2] => PRC | 2018-04-20 10:49:20 //时区及时间
+    [3] => 2M  //最大上传
+    [4] => 120 //最大运行时间
+    [5] => apache2handler //web 服务器
+    [6] => bundled (2.1.0 compatible)  //gd 库版本
+)
+```
 
+### CurlClass.php的Curl的通信类工具
+####    功能描述
+```
+curl通讯类，包含 get、post 方式。
+```
+####    使用get的演示
+```php
+<?php
+use Yll1024335892\Phptools\CurlClass;
+class indexController{
+    public function index(){
+        $curl = new CurlClass();
+        $res  = $curl->get('http://api.hcoder.net');
+        //返回结果
+        echo $res;
+    }
+}
+```
+####    使用post的演示
+```php
+<?php
+use Yll1024335892\Phptools\CurlClass;
+class indexController{
+    public function index(){
+        $curl = new CurlClass();
+        //post 数据
+        $data = array('name' => 'grace', 'age' => 10);
+        $res  = $curl->post('http://api.hcoder.net', $data);
+        //curl 状态
+        p($curl->http_status);
+        //传输时间毫秒
+        echo $curl->speed;
+        //返回结果
+        echo $res;
+    }
+}
+```
+#### 获取 curl 资源对象
+```
+curl 资源对象保存在  CurlClass对象的 curlHandle 属性，您可以获取它并继续完成其他功能：
+$curlo = $curl->curlHandle;
+```
 
+### DownloadClass.php文件下载的工具类
+####    功能描述
+```
+下载指定的文件（可设置下载名）。
+```
+####    演示
+```php
+<?php
+use Yll1024335892\Phptools\DownloadClass;
+class indexController{
+    public function index(){
+        //不设置下载文件名
+        DownloadClass::download('index.php');
+        //设置下载文件名
+        DownloadClass::download('index.php', '2.php');
+    }
+}
+```
+
+###  XmlClass.php是xml的生成和解析
+####    使用
+>   生成 XML - create()
+```php
+参数：
+
+1、xml 数据【数组或字符串格式】
+数组格式：
+$data = array(
+    array('nodeName' => 'person', 'key' => 'value', 'key' => 'value'),
+    array('nodeName' => 'person', 'name' => '李四', 'age' => 17),
+    array('nodeName' => 'person', 'name' => '王五', 'age' => 18),
+    .......................
+);
+除 nodeName 外的键名称均为自定义名称。
+
+2、根节点名称，可选参数，默认： root
+
+演示 - 数组格式：
+
+//实例化 XML
+$xmlObj = new XmlClass();
+//演示数据
+$data = array(
+    array('nodeName' => 'person', 'name' => '张三', 'age' => 16),
+    array('nodeName' => 'person', 'name' => '李四', 'age' => 17),
+    array('nodeName' => 'person', 'name' => '王五', 'age' => 18)
+);
+// 创建 XML
+$xml = $xmlObj->create($data);
+//保存 XML
+file_put_contents('demo.xml', $xml);
+
+演示 - 字符格式
+
+$xmlObj = new XmlClass();
+/*演示数据
+$data = '	<person>
+    <name>张三</name>
+        <age>18</age>
+    </person>
+    <person>
+        <name>李四</name>
+        <age>18</age>
+    </person>';
+// 创建 XML
+$xml = $xmlObj->create($data);
+```
+>   解析 XML - reader()
+```
+参数： xml 内容
+演示：
+
+$xmlObj = new XmlClass();
+$xmlContent = file_get_contents('demo.xml');
+$xml = $xmlObj->reader($xmlContent);
+print_r($xml);
+```
 
 
 
