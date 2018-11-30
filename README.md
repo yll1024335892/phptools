@@ -117,10 +117,10 @@ echo '<img src="demo22.gif" />';
 4、命名规则定制
 ```
 ####    使用方式
-1,实例化上传对象
-2,设置上传信息
-3,上传文件
-4,演示
+> 1,实例化上传对象
+> 2,设置上传信息
+> 3,上传文件
+> 4,演示
 ```php
 <?php
 class indexController extends grace{
