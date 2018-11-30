@@ -25,8 +25,9 @@ _The code contribution process is not very formal. You just need to make sure th
 ### ImageClass.php
 
 ### DirClass.php
+```shell
 注意不同用户建立一个新的文件夹，管理员能够查看图片并删除(谨慎操作)
-
+```
 
 
 ## License
