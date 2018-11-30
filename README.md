@@ -161,7 +161,89 @@ class indexController{
     <input type="submit" id="" value="提交" />
 </form>
 ```
+### IpClass.php获取真实IP工具
+####    功能描述
+```
+获取客户端真实ip地址。
+```
+####    使用
+```
+使用 ip类的静态方法 getIp() 获取客户ip。
+```
+####    演示
+```
+<?php
+use Yll1024335892\Phptools\IpClass;
+class indexController{
+    public function index(){
+        echo IpClass::getIp();
+    }
+}
+```
 
+### 图片验证码
+####    使用代码
+```php
+<?php
+use Yll1024335892\Phptools\VerifyCodeClass;
+class indexController{
+    public function index(){
+        //提交比对
+        if(PG_POST){
+            //比对验证码
+            if($_POST['yzm'] != getSession('pgVcode')){
+                echo '验证码错误';
+            }else{
+                echo '验证码正确';
+            }
+        }
+    }
+
+    //绘制验证码
+    public function vcode(){
+        /*
+         * verifyCode 参数
+         * 1、图片宽度
+         * 2、图片高度
+         * 3、字符总数
+         * 4、包含数字的数量
+         * 5、字体【可省参数 默认：AMBROSIA.ttf，如需更换请将字体文件部署到 phpGrace/fonts 文件夹下】
+         */
+        $vcode = new VerifyCodeClass(88, 32, 4, 1);
+        /*
+         * 可修改属性
+        $vcode->bgcolor   = array(255, 0, 0); //验证码背景颜色
+        $vcode->codeColor = array(0, 255, 0); //验证码文本颜色
+        $vcode->fontSize  = 30; //验证码文字大小
+        $vcode->noise     = false; //是否绘制干扰字符
+        $vcode->noiseNumber = 10; //干扰字符数量
+        $vcode->sessionName  = 'yourname'; //保存验证码的 session 名称
+        */
+        //绘制验证码
+        $vcode->draw();
+    }
+}
+
+利用视图展示验证码，提交 POST 数据
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<form action="" method="post">
+    验证码 : <br />
+    <input type="text" name="yzm" /><img src="/index/vcode" onclick="changeVcode(this);" /><br />
+    <input type="submit" id="" value="提交" />
+</form>
+<script type="text/javascript">
+//点击更换验证码
+function changeVcode(vcodeImg){
+    vcodeImg.setAttribute('src', '/index/vcode/' + Math.random());
+}
+</script>
+</body>
+</html>
+```
 
 ### DirClass.php
 ```shell
