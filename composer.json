@@ -1,0 +1,17 @@
+{
+    "name": "yll1024335892/phptools",
+    "description": "A  php's tools",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yll1024335892",
+            "email": "yll1024335892@163.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Yll1024335892\\Phptools\\": "src"
+        }
+    }
+}
