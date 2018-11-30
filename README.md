@@ -22,7 +22,7 @@ You can contribute in one of three ways:
 3. Contribute new features or update the wiki.
 
 _The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
-### ImageClass.php 图片处理的工具
+## ImageClass.php 图片处理的工具
 ```shell
 $image=new ImageClass("xx.png");
 ```
