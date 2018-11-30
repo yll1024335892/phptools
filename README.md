@@ -108,6 +108,43 @@ $image->save('demo22');
 echo '<img src="demo22.gif" />';
 ```
 
+### UploadClass.php文件上传工具类
+####    功能描述
+```shell
+1、文件扩展名、类型检查
+2、文件大小检查
+3、目录创建
+4、命名规则定制
+```
+####    使用方式
+1,实例化上传对象
+2,设置上传信息
+3,上传文件
+4,演示
+```
+<?php
+class indexController extends grace{
+    public function index(){
+        //提交比对
+        if(!empty($_FILES['file'])){
+            $uper = new phpGrace\tools\uper('file', 'upload', '2.png');
+            $uploadedFile = $uper->upload();
+            if($uploadedFile){
+                echo '上传文件路径 : '.$uploadedFile;
+            }else{
+                echo $uper->error;
+            }
+        }
+    }
+}
+//html表单
+<form action="" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" value="" />
+    <input type="submit" id="" value="提交" />
+</form>
+```
+
+
 ### DirClass.php
 ```shell
 注意不同用户建立一个新的文件夹，管理员能够查看图片并删除(谨慎操作)
