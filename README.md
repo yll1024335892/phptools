@@ -332,6 +332,27 @@ $timer = new TimerClass();
 echo $timer->fromTime($timer->timeStamp('2018-04-24 15:48:04'));
 
 ```
+### Md5Class.php是MD5加密工具
+####    功能描述
+```
+md5 2次加密后随即位置加密工具
+```
+####    使用说明
+```
+1、获取MD5操作对象
+2、使用对象的 toMd5() 方法进行数据加密（2次md5 + 随即位置加密）
+3、使用对象的 getMd5() 方法将加密后的数据还原至2次MD5加密
+```
+####    演示
+```php
+<?php
+$md5 = new Md5Class();
+$str = 'grace';
+echo $md5->toMd5($str).'<br />';
+echo $md5->getMd5('0b574905899880cf434ead59d960415efe26');
+?>
+```
+
 
 
 
