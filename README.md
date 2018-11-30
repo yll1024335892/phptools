@@ -181,7 +181,7 @@ class indexController{
 }
 ```
 
-### 图片验证码
+### VerifyCodeClass.php图片验证码工具
 ####    使用代码
 ```php
 <?php
@@ -244,6 +244,98 @@ function changeVcode(vcodeImg){
 </body>
 </html>
 ```
+
+### TimerClass.php 时间转化工具
+####    功能描述
+```
+日期时间换算，时间戳、时间差、过去时间计算。
+```
+####    使用说明
+
+>   当前年份 currentYear()
+```
+$timer = new TimerClass();
+echo $timer->currentYear();
+```
+>   当前月份 currentMonth()
+```
+$timer = new TimerClass();
+echo $timer->currentMonth();
+```
+
+>   当前日期 currentDay()
+```
+$timer = new TimerClass();
+echo $timer->currentDay();
+```
+
+>   当前时 currentHour()
+```
+$timer = new TimerClass();
+echo $timer->currentHour();
+```
+>   当前分 currentMin()
+```
+$timer = new TimerClass();
+echo $timer->currentMin();
+```
+
+>   当前秒 currentSecond()
+
+```
+$timer = new TimerClass();
+echo $timer->currentSecond();
+```
+
+> 按照指定格式及指定时间戳计算时间 dateTime()
+```
+参数：
+
+1、$format = "Y-m-d H:i:s" 时间格式，可省参数 【默认 "Y-m-d H:i:s"】
+2、$currentTime = null //指定的时间戳，可省参数 【默认当前时间】
+演示：
+
+$timer = new TimerClass();
+echo $timer->dateTime('m/d/Y H:i:s').'<br />';//当前时间
+echo $timer->dateTime('m/d/Y H:i:s', 1524624358).'<br />'; //指定时间戳
+```
+
+>   将日期时间转换时间戳 timeStamp()
+```
+参数：
+
+日期及时间，支持的格式 Y-m-d H:i:s 或 m/d/Y H:i:s
+演示：
+
+$timer = new TimerClass();
+echo '计算时间戳 : '.$timer->timeStamp('2018-04-24 15:48:04').'<br />';
+```
+
+>   计算日期与日期间的差值 DValue($timer1, $timer2)
+```
+参数：
+
+1、起始日期及时间，支持的格式 Y-m-d H:i:s 或 m/d/Y H:i:s
+2、结束日期及时间，支持的格式 Y-m-d H:i:s 或 m/d/Y H:i:s
+演示：
+
+$timer = new TimerClass();
+echo '计算时间差 : '.$timer->DValue('2018-04-25 15:48:18', '04/25/2018 15:48:12');
+```
+
+>   计算过去时间并格式化 fromTime($time)
+```
+参数：时间戳
+演示：
+
+$timer = new TimerClass();
+echo $timer->fromTime($timer->timeStamp('2018-04-24 15:48:04'));
+
+```
+
+
+
+
 
 ### DirClass.php
 ```shell
