@@ -118,16 +118,26 @@ echo '<img src="demo22.gif" />';
 ```
 ####    使用方式
 > 1,实例化上传对象
+```
+$upload = new UploadClass('fileName', 'upload', '2.png');
+UploadClass 类构造函数参数
+1、文件域名称(<input type="file" name="fileName" />)
+#
+2、上传文件保存文件夹位置
+#
+3、可选参数【上传后文件名，默认 null - 根据设置的规则命名】
+```
 > 2,设置上传信息
 > 3,上传文件
 > 4,演示
 ```php
 <?php
-class indexController extends grace{
+use Yll1024335892\Phptools\UploadClass;
+class indexController{
     public function index(){
         //提交比对
         if(!empty($_FILES['file'])){
-            $uper = new phpGrace\tools\uper('file', 'upload', '2.png');
+            $uper = new UploadClass('file', 'upload', '2.png');
             $uploadedFile = $uper->upload();
             if($uploadedFile){
                 echo '上传文件路径 : '.$uploadedFile;
