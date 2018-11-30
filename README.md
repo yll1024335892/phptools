@@ -108,7 +108,7 @@ $image->save('demo22');
 echo '<img src="demo22.gif" />';
 ```
 
-### UploadClass.php文件上传工具类
+## UploadClass.php文件上传工具类
 ####    功能描述
 ```shell
 1、文件扩展名、类型检查
@@ -161,7 +161,7 @@ class indexController{
     <input type="submit" id="" value="提交" />
 </form>
 ```
-### IpClass.php获取真实IP工具
+## IpClass.php获取真实IP工具
 ####    功能描述
 ```
 获取客户端真实ip地址。
@@ -181,7 +181,7 @@ class indexController{
 }
 ```
 
-### VerifyCodeClass.php图片验证码工具
+## VerifyCodeClass.php图片验证码工具
 ####    使用代码
 ```php
 <?php
@@ -245,7 +245,7 @@ function changeVcode(vcodeImg){
 </html>
 ```
 
-### TimerClass.php 时间转化工具
+## TimerClass.php 时间转化工具
 ####    功能描述
 ```
 日期时间换算，时间戳、时间差、过去时间计算。
@@ -332,7 +332,7 @@ $timer = new TimerClass();
 echo $timer->fromTime($timer->timeStamp('2018-04-24 15:48:04'));
 
 ```
-### Md5Class.php是MD5加密工具
+## Md5Class.php是MD5加密工具
 ####    功能描述
 ```
 md5 2次加密后随即位置加密工具
@@ -353,7 +353,7 @@ echo $md5->getMd5('0b574905899880cf434ead59d960415efe26');
 ?>
 ```
 
-### ServerClass.php获取服务器工具类
+## ServerClass.php获取服务器工具类
 ####    功能介绍
 ```
 获取服务器相关信息
@@ -383,7 +383,7 @@ Array
 )
 ```
 
-### CurlClass.php的Curl的通信类工具
+## CurlClass.php的Curl的通信类工具
 ####    功能描述
 ```
 curl通讯类，包含 get、post 方式。
@@ -426,7 +426,7 @@ curl 资源对象保存在  CurlClass对象的 curlHandle 属性，您可以获�
 $curlo = $curl->curlHandle;
 ```
 
-### DownloadClass.php文件下载的工具类
+## DownloadClass.php文件下载的工具类
 ####    功能描述
 ```
 下载指定的文件（可设置下载名）。
@@ -445,7 +445,7 @@ class indexController{
 }
 ```
 
-###  XmlClass.php是xml的生成和解析
+##  XmlClass.php是xml的生成和解析
 ####    使用
 >   生成 XML - create()
 ```php
@@ -505,7 +505,7 @@ print_r($xml);
 ```
 
 
-### ReflexClass.php类反射机制
+## ReflexClass.php类反射机制
 ####    功能描述
 ```
 使用 reflex 工具类可以快速的对某个指定的类文件或对象进行反射，类文件结构一目了然！
@@ -536,7 +536,7 @@ Method [ user, ctor public method __construct ] { @@ D:\web\localhost\yll1024335
 Method [ user public method send ] { @@ D:\web\localhost\yll1024335892\Phptools\MailerClass.php 34 - 77 - Parameters [4] ......
 ```
 
-### PinyinClass.php汉字转拼音工具类
+## PinyinClass.php汉字转拼音工具类
 ####    功能描述
 ```
 将汉字转换为对应的拼音。不能转换的返回原汉字。
@@ -551,7 +551,7 @@ echo PinyinClass::getShortPinyin('您好!');
 
 
 
-### DirClass.php文件夹操作
+## DirClass.php文件夹操作
 ####    使用说明
 ```
 服务器端文件夹操作，包含创建、删除、重命名等常用功能。
@@ -624,7 +624,7 @@ $dir = new DirClass();
 ###### 注意不同用户建立一个新的文件夹，管理员能够查看图片并删除(谨慎操作)
 
 
-### NumToCapitalClass.php人民币大写转换类
+## NumToCapitalClass.php人民币大写转换类
 ####    使用说明
 ```
 直接使用 NumToCapitalClass 类的静态方法 : ParseNumber()
