@@ -505,6 +505,51 @@ print_r($xml);
 ```
 
 
+### ReflexClass.php类反射机制
+####    功能描述
+```
+使用 reflex 工具类可以快速的对某个指定的类文件或对象进行反射，类文件结构一目了然！
+```
+####    使用说明
+```
+使用 phpGrace\tools\reflex 类的静态方法 r，参数：类或对象。
+
+<?php
+use Yll1024335892\Phptools\ReflexClass;
+use Yll1024335892\Phptools\MailerClass;
+class indexController{
+    public function index(){
+        $mailer  = new MailerClass();
+        ReflexClass::r($mailer);
+    }
+}
+```
+#### 反射结果类似
+```
+文件位置 :
+D:\web\localhost\yll1024335892\Phptools\MailerClass.php
+属性 :
+Property [ default private $mailConfig ]
+类内常量 :
+方法 :
+Method [ user, ctor public method __construct ] { @@ D:\web\localhost\yll1024335892\Phptools\MailerClass.php 24 - 32 }
+Method [ user public method send ] { @@ D:\web\localhost\yll1024335892\Phptools\MailerClass.php 34 - 77 - Parameters [4] ......
+```
+
+### PinyinClass.php汉字转拼音工具类
+####    功能描述
+```
+将汉字转换为对应的拼音。不能转换的返回原汉字。
+```
+####    使用
+```
+echo PinyinClass::getPinyin('您好!').'<br />';
+//拼音首字母缩写
+echo PinyinClass::getShortPinyin('您好!');
+```
+
+
+
 
 ### DirClass.php
 ```shell
