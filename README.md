@@ -634,6 +634,13 @@ echo NumToCapitalClass::ParseNumber(999158899.012);
 //输出 玖亿玖仟玖佰壹拾伍万捌仟捌佰玖拾玖元零壹分
 ```
 
+## QrcodeClass.php二维码生成工具类的封装
+####    使用
+```
+QrcodeClass::draw("http://www.52website.cn","hh.jpg");
+```
+
+
 
 ## License
 
