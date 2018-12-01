@@ -640,6 +640,26 @@ echo NumToCapitalClass::ParseNumber(999158899.012);
 QrcodeClass::draw("http://www.52website.cn","hh.jpg");
 ```
 
+## CategoryClass.php多级分类的工具封装(有针对性，针对thinkphp需要更加自己的框架进行数据库的操作处理)
+####    使用
+```
+$Category = new CategoryClass('ProductCategory', array('id', 'pid', 'name', 'fullname'));
+$list = $Category->getList();//获取分类结构
+```
+####    数据表的结构
+```
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS `yll1024335892_category`;
+CREATE TABLE `lqb_category` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` smallint(5) unsigned NOT NULL COMMENT 'parentCategory上级分类',
+  `name` varchar(80) NOT NULL COMMENT '分类名称',
+  `sort` smallint(8) NOT NULL DEFAULT '0',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='新闻分类表';
+```
+
 
 
 ## License
