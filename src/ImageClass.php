@@ -37,8 +37,6 @@ class ImageClass{
     const TB6 =  6 ; //常量，标识缩略图固定尺寸缩放类型
 
 
-
-//if(empty($font)){$font = PG_IN.'fonts'.PG_DS.'AMBROSIA.ttf';}
     
 	//打开图片
     public function __construct($imgFile) {
