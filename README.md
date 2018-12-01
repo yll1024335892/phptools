@@ -24,7 +24,8 @@ You can contribute in one of three ways:
 _The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
 ## ImageClass.php 图片处理的工具
 ```shell
-$image=new ImageClass("xx.png");
+$image=new ImageClass("xx.png");//打开图片
+gif的水印需要优化
 ```
 #### 1.添加水印 - water 方法
 ```shell
@@ -44,8 +45,8 @@ $image=new ImageClass("xx.png");
 3、水印透明度【默认 80】
 演示
 $image = new ImageClass('demo.jpg');
-$image->water('water.png');
-$image->save('demo_save');//保存图片【参数文件名，不要传递扩展名】
+$image->water('water.png',$img::CC,100);//居中透明度100的水印
+$image->save('demo_save');//保存图片【参数文件名，不要传递扩展名】原图是什么扩展就是什么扩展名
 ```
 #### 2.缩略图 - thumb() 方法
 ```shell
@@ -100,10 +101,10 @@ echo '<img src="demo22.jpg" />';
     传递时使用数值即可！
 5、文字相对当前位置的偏移量
 6、文字倾斜角度
-7、字体文件路径【默认 phpGrace/fonts/AMBROSIA.ttf】
+7、字体文件路径【默认 src/temp/fonts/AMBROSIA.ttf】
 演示
 $image = new ImageClass('demo.gif');
-$image->text('phpGrace', 20, array(255, 0, 0));
+$image->text('yll1024335892', 20, array(255, 0, 0));
 $image->save('demo22');
 echo '<img src="demo22.gif" />';
 ```
@@ -130,8 +131,8 @@ UploadClass 类构造函数参数
 $upload->allowType = 'image/png,image/jpeg,image/pjpeg,image/x-png,image/gif'; //设置上传允许的类型
 $upload->allowExeName  = 'jpg,gif,png'; //允许上传文件的扩展名
 $upload->allowSize = 1024允许上传文件的大小 [单位 K]
-$upload->dirCreateRule = 'no'; //子文件夹创建规则  no - 不自动创建  |  y - 年 | m - 月 | d - 日
-$upload->renameRule = 3; //文件重命名规则  1: 不重命名 | 2: 随机重命名 | 3: _1 后缀形式重命名
+$upload->dirCreateRule = 'no'; //子文件夹创建规则  no - 不自动创建  |  y - 年 | m - 月(Ym) | d - 日(Ymd)
+$upload->renameRule = 3; //文件重命名规则  1: 原文件名 | 2: 随机命名 | 3: _1 后缀形式重命名 | 默认是原文件名
 ```
 > 3,上传文件
 ```
@@ -144,8 +145,8 @@ use Yll1024335892\Phptools\UploadClass;
 class indexController{
     public function index(){
         //提交比对
-        if(!empty($_FILES['file'])){
-            $uper = new UploadClass('file', 'upload', '2.png');
+        if(!empty($_FILES['filename'])){
+            $uper = new UploadClass('filename', 'upload', '2.png');
             $uploadedFile = $uper->upload();
             if($uploadedFile){
                 echo '上传文件路径 : '.$uploadedFile;
@@ -157,7 +158,7 @@ class indexController{
 }
 //html表单
 <form action="" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" value="" />
+    <input type="file" name="filename" value="" />
     <input type="submit" id="" value="提交" />
 </form>
 ```
@@ -207,7 +208,7 @@ class indexController{
          * 2、图片高度
          * 3、字符总数
          * 4、包含数字的数量
-         * 5、字体【可省参数 默认：AMBROSIA.ttf，如需更换请将字体文件部署到 phpGrace/fonts 文件夹下】
+         * 5、字体【可省参数 默认：AMBROSIA.ttf，如需更换请将字体文件部署到 src/temp/fonts 文件夹下】
          */
         $vcode = new VerifyCodeClass(88, 32, 4, 1);
         /*
@@ -347,9 +348,9 @@ md5 2次加密后随即位置加密工具
 ```php
 <?php
 $md5 = new Md5Class();
-$str = 'grace';
+$str = 'yll1024335892';
 echo $md5->toMd5($str).'<br />';
-echo $md5->getMd5('0b574905899880cf434ead59d960415efe26');
+echo $md5->getMd5('94478811d37e11a7ace56c5503174b2dce19');
 ?>
 ```
 
