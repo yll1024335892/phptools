@@ -5,6 +5,8 @@
  */
 namespace Yll1024335892\Phptools;
 use  Yll1024335892\Phptools\Exceptions\pgException;
+define("PG_IN",__DIR__."/temp/");
+define("PG_DS","/");
 class ImageClass{
 	//图像资源
     private $img;
@@ -33,6 +35,10 @@ class ImageClass{
     const TB4 =  4 ; //常量，标识缩略图左上角裁剪类型
     const TB5 =  5 ; //常量，标识缩略图右下角裁剪类型
     const TB6 =  6 ; //常量，标识缩略图固定尺寸缩放类型
+
+
+
+//if(empty($font)){$font = PG_IN.'fonts'.PG_DS.'AMBROSIA.ttf';}
     
 	//打开图片
     public function __construct($imgFile) {
@@ -67,14 +73,19 @@ class ImageClass{
 			'height'  => $info[1],
 		);
 	}
-	
+
+    public function  test(){
+        var_export(__DIR__);
+    }
+
+
 	/**
      * 添加水印
      * @param  string  $source 水印图片路径
      * @param  integer $locate 水印位置
      * @param  integer $alpha  水印透明度
      */
-    public function water($source, $locate = image::RB, $alpha = 80){
+    public function water($source, $locate = ImageClass::RB, $alpha = 80){
         if(!is_file($source)) throw new \pgException('水印图像不存在');
 		//创建水印图像资源
         $info = getimagesize($source);
@@ -98,46 +109,46 @@ class ImageClass{
         /* 设定水印位置 */
         switch ($locate) {
             /* 右下角水印 */
-            case image::RB :
+            case ImageClass::RB :
                 $x = $this->info['width'] - $info[0];
                 $y = $this->info['height'] - $info[1];
             break;
             /* 左下角水印 */
-            case image::LB :
+            case ImageClass::LB :
                 $x = 0;
                 $y = $this->info['height'] - $info[1];
 			break;
             /* 左上角水印 */
-            case image::LT :
+            case ImageClass::LT :
                 $x = $y = 0;
 			break;
             /* 右上角水印 */
-            case image::RT :
+            case ImageClass::RT :
                 $x = $this->info['width'] - $info[0];
                 $y = 0;
 			break;
             /* 居中水印 */
-            case image::CC :
+            case ImageClass::CC :
                 $x = ($this->info['width'] - $info[0])/2;
                 $y = ($this->info['height'] - $info[1])/2;
 			break;
             /* 下居中水印 */
-            case image::BC :
+            case ImageClass::BC :
                 $x = ($this->info['width'] - $info[0])/2;
                 $y = $this->info['height'] - $info[1];
 			break;
             /* 右居中水印 */
-            case image::RC :
+            case ImageClass::RC :
                 $x = $this->info['width'] - $info[0];
                 $y = ($this->info['height'] - $info[1])/2;
 			break;
             /* 上居中水印 */
-            case image::TC :
+            case ImageClass::TC :
                 $x = ($this->info['width'] - $info[0])/2;
                 $y = 0;
 			break;
             /* 左居中水印 */
-           case image::LC :
+           case ImageClass::LC :
                 $x = 0;
                 $y = ($this->info['height'] - $info[1])/2;
 			break;
@@ -168,12 +179,12 @@ class ImageClass{
      * @param  integer $height 缩略图最大高度
      * @param  integer $type   缩略图裁剪类型
      */
-    public function thumb($width, $height, $type = image::TB1) {
+    public function thumb($width, $height, $type = ImageClass::TB1) {
         $w = $this->info['width'];
         $h = $this->info['height'];
         switch ($type) {
             /* 等比例缩放 */
-            case image::TB1 :
+            case ImageClass::TB1 :
                 if($w < $width && $h < $height) return;
                 $scale = min($width/$w, $height/$h);
                 $x = $y = 0;
@@ -181,7 +192,7 @@ class ImageClass{
                 $height = $h * $scale;
 			break;
 			/* 居中裁剪 */
-            case image::TB3 :
+            case ImageClass::TB3 :
                 //计算缩放比例
                 $scale = max($width/$w, $height/$h);
                 $w = $width/$scale;
@@ -190,14 +201,14 @@ class ImageClass{
                 $y = ($this->info['height'] - $h)/2;
 			break;
             /* 左上角裁剪 */
-            case image::TB4 :
+            case ImageClass::TB4 :
                 $scale = max($width/$w, $height/$h);
                 $x = $y = 0;
                 $w = $width/$scale;
                 $h = $height/$scale;
 			break;
 			/* 右下角裁剪 */
-            case image::TB5 :
+            case ImageClass::TB5 :
                 $scale = max($width/$w, $height/$h);
                 $w = $width/$scale;
                 $h = $height/$scale;
@@ -205,7 +216,7 @@ class ImageClass{
                 $y = $this->info['height'] - $h;
 			break;
             /* 填充 */
-            case image::TB2 :
+            case ImageClass::TB2 :
                 if($w < $width && $h < $height){
                     $scale = 1;
                 } else {
@@ -228,7 +239,7 @@ class ImageClass{
                 $this->info['height'] = $height;
                 return;
 			//固定
-            case image::TB6 :
+            case ImageClass::TB6 :
                 $x = $y = 0;
 			break;
             default:
@@ -247,7 +258,7 @@ class ImageClass{
      * @param  integer $offset 文字相对当前位置的偏移量
      * @param  integer $angle  文字倾斜角度
      */
-    public function text($text, $size, $color = array(0, 0, 0), $locate = image::RB, $offset = 0, $angle = 0, $font = null){
+    public function text($text, $size, $color = array(0, 0, 0), $locate = ImageClass::RB, $offset = 0, $angle = 0, $font = null){
     	if(empty($font)){$font = PG_IN.'fonts'.PG_DS.'AMBROSIA.ttf';}
         if(!is_file($font)){throw new \pgException("不存在的字体文件：{$font}");}
         $info = imagettfbbox($size, $angle, $font, $text);
@@ -261,43 +272,43 @@ class ImageClass{
         $h = $maxy - $miny;
         switch ($locate) {
             /* 右下角文字 */
-            case image::RB :
+            case ImageClass::RB :
                 $x += $this->info['width']  - $w;
                 $y += $this->info['height'] - $h;
 			break;
             /* 左下角文字 */
-            case image::LB :
+            case ImageClass::LB :
                 $y += $this->info['height'] - $h;
 			break;
             /* 左上角文字 */
-			case image::LT :
+			case ImageClass::LT :
                 // 起始坐标即为左上角坐标，无需调整
 			break;
             /* 右上角文字 */
-			case image::RT :
+			case ImageClass::RT :
                 $x += $this->info['width'] - $w;
 			break;
             /* 居中文字 */
-			case image::CC :
+			case ImageClass::CC :
                 $x += ($this->info['width']  - $w)/2;
                 $y += ($this->info['height'] - $h)/2;
 			break;
             /* 下居中文字 */
-			case image::BC :
+			case ImageClass::BC :
                 $x += ($this->info['width'] - $w)/2;
                 $y += $this->info['height'] - $h;
 			break;
             /* 右居中文字 */
-			case image::RC :
+			case ImageClass::RC :
                 $x += $this->info['width'] - $w;
                 $y += ($this->info['height'] - $h)/2;
 			break;
             /* 上居中文字 */
-			case image::TC :
+			case ImageClass::TC :
                 $x += ($this->info['width'] - $w)/2;
 			break;
             /* 左居中文字 */
-			case image::LC :
+			case ImageClass::LC :
                 $y += ($this->info['height'] - $h)/2;
 			break;
 			/* 自定义文字坐标 */
