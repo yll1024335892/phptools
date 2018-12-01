@@ -3,6 +3,9 @@
  * 验证码绘制
  */
 namespace Yll1024335892\Phptools;
+use  Yll1024335892\Phptools\Exceptions\pgException;
+define("PG_IN",__DIR__."/temp/");
+define("PG_DS","/");
 class VerifyCodeClass{
     private $width;                                //图片宽度
     private $height;                               //图片高度
